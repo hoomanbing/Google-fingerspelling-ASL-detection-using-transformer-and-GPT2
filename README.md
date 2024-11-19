@@ -13,4 +13,6 @@
 ![hehe](https://github.com/user-attachments/assets/4ee4fb49-18b0-4600-9618-e489c8561de9)
 
 ## Files
-![ASL Training](https://github.com/hoomanbing/Google-fingerspelling-ASL-detection-using-transformer-and-GPT2/blob/main/asl-final.ipynb)
+1. ![ASL Training](https://github.com/hoomanbing/Google-fingerspelling-ASL-detection-using-transformer-and-GPT2/blob/main/asl-final.ipynb) : Training model for ASL detection.
+2. ![Transformer Model](https://github.com/hoomanbing/Google-fingerspelling-ASL-detection-using-transformer-and-GPT2/blob/main/ASL_words.ipynb) : Transformer Model for Training on Google Finger-spelling Dataset. Metric: Training and Validation Loss.
+3. ![GPT-2 Word to Sentence](https://github.com/hoomanbing/Google-fingerspelling-ASL-detection-using-transformer-and-GPT2/blob/main/word_to_sentences.ipynb) : GPT-2 model for words to sentence. Metrics: BLEU, WER.
