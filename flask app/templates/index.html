@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Transcribe</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>ASL Transcribe</h1>
+    <video id="video" autoplay></video>
+    <button onclick="captureFrame()">Detect ASL</button>
+    <p id="prediction">Prediction: </p>
+    <script>
+        const video = document.getElementById('video');
+        const predictionText = document.getElementById('prediction');
+
+        // Access webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            });
+
+        // Capture frame and send to Flask backend
+        function captureFrame() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            canvas.toBlob(blob => {
+                const formData = new FormData();
+                formData.append('video_frame', blob);
+
+                fetch('/detect', { method: 'POST', body: formData })
+                    .then(response => response.json())
+                    .then(data => {
+                        predictionText.textContent = `Prediction: ${data.predictions}`;
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        }
+    </script>
+</body>
+</html>
